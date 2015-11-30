@@ -24,7 +24,7 @@ public class MainActivity extends RoboActivity {
 
     private static final String LISTVIEW_FRAGMENT_TAG = "listview_fragment_tag";
 
-    private Fragment searchFragment = new ListViewFragment();
+    private Fragment listViewFragment = new ListViewFragment();
     private AdapterView.OnItemClickListener onMovieItemClickListener = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -62,22 +62,34 @@ public class MainActivity extends RoboActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        FragmentManager fragmentManager = getFragmentManager();
-        fragmentManager.beginTransaction()
-                .add(android.R.id.content, new MainFragment(), null)
-                .commit();
+        if (!NetworkUtils.isOnline()) {
+            DialogUtils.showMessageDialog(MainActivity.this,
+                    getString(R.string.no_network_message),
+                    new DialogInterface.OnClickListener() {
+
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            finish();
+                        }
+                    });
+        } else {
+            FragmentManager fragmentManager = getFragmentManager();
+            fragmentManager.beginTransaction()
+                    .add(android.R.id.content, new MainFragment(), null)
+                    .commit();
+        }
     }
 
-    private void removeSearchFragment() {
+    private void removeListViewFragment() {
         FragmentManager fragmentManager = getFragmentManager();
-        fragmentManager.beginTransaction().remove(searchFragment).commit();
+        fragmentManager.beginTransaction().remove(listViewFragment).commit();
     }
 
-    private void addSearchFragment() {
+    private void addListViewFragment() {
         FragmentManager fragmentManager = getFragmentManager();
 
         fragmentManager.beginTransaction()
-                .add(android.R.id.content, searchFragment, LISTVIEW_FRAGMENT_TAG)
+                .add(android.R.id.content, listViewFragment, LISTVIEW_FRAGMENT_TAG)
                 .commit();
     }
 }

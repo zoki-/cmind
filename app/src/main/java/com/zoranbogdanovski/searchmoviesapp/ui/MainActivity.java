@@ -31,7 +31,7 @@ import java.util.List;
 import roboguice.activity.RoboActivity;
 import roboguice.inject.ContentView;
 
-@ContentView(R.layout.activity_movie_search)
+@ContentView(R.layout.activity_main)
 public class MainActivity extends RoboActivity {
 
     private static final String SEARCH_FRAGMENT_TAG = "search_fragment_tag";

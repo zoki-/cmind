@@ -47,7 +47,7 @@ public class ListViewFragment extends Fragment {
 
         webView = (WebView) fragmentView.findViewById(R.id.web_view);
         webView.loadUrl("https://www.google.com/");
-        // TODO add web view client
+        // TODO add web view client to handle redirecting to list fragment
 
         imageView = (ImageView) fragmentView.findViewById(R.id.image_view);
         imageView.setOnClickListener(new View.OnClickListener() {

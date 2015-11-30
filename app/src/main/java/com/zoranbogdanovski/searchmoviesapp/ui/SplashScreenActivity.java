@@ -29,25 +29,15 @@ public class SplashScreenActivity extends Activity {
     protected void onResume() {
         super.onResume();
 
-        final App app = App.getInstance();
-
         if (NetworkUtils.isOnline()) {
-            // configuration must be cached before using the app
+            // start app after 3sec delay
             new Handler().postDelayed(new Runnable() {
 
                 @Override
                 public void run() {
-                    app.getServices().startGetConfiguration(new IParsedResponseListener() {
-
-                        @Override
-                        public void onParsedResponseFinished(IResponseModel response) {
-                            // cache response for as long as app is active
-                            app.setConfiguration((Configuration) response);
-                            startActivity(new Intent(SplashScreenActivity.this, MovieSearchActivity.class));
-                        }
-                    });
+                    startActivity(new Intent(SplashScreenActivity.this, MovieSearchActivity.class));
                 }
-            }, 1500);
+            }, 3000);
         } else {
             DialogUtils.showMessageDialog(this, getString(R.string.no_network_message),
                     new DialogInterface.OnClickListener() {

@@ -1,14 +1,26 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:weightSum="1"
+    android:orientation="vertical"
     tools:context="com.zoranbogdanovski.searchmoviesapp.ui.MainFragment">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:layout_centerInParent="true"
-        android:text="@string/enter_search_query" />
+    <WebView
+        android:id="@+id/web_view"
+        android:layout_weight="0.48"
+        android:layout_width="match_parent"
+        android:layout_height="0dp" />
 
-</RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.02" />
+
+    <ImageView
+        android:id="@+id/image_view"
+        android:layout_weight="0.48"
+        android:layout_width="match_parent"
+        android:layout_height="0dp" />
+
+</LinearLayout>

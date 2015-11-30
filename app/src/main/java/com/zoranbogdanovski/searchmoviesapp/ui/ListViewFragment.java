@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import com.zoranbogdanovski.searchmoviesapp.R;
 
 /**
- * A fragment containing a list to show the user search results.
+ * A fragment containing a list to show to the user.
  */
 public class ListViewFragment extends Fragment {
 

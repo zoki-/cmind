@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white"
-    tools:context="com.zoranbogdanovski.searchmoviesapp.ui.SearchFragment">
+    tools:context="com.zoranbogdanovski.searchmoviesapp.ui.MainFragment">
 
     <ListView
         android:id="@+id/fragment_list"

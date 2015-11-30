@@ -9,11 +9,11 @@ import android.view.ViewGroup;
 import com.zoranbogdanovski.searchmoviesapp.R;
 
 /**
- * A placeholder fragment containing a simple view to instruct user what to do.
+ * A fragment containing a web view and an image view.
  */
-public class SearchFragment extends Fragment {
+public class MainFragment extends Fragment {
 
-    public SearchFragment() {
+    public MainFragment() {
     }
 
     @Override

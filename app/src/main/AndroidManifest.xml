@@ -24,7 +24,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.MovieSearchActivity"
+            android:name=".ui.MainActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait" >
         </activity>
@@ -32,10 +32,10 @@
             android:name=".ui.MovieDetailActivity"
             android:label="@string/title_activity_movie_detail"
             android:screenOrientation="portrait"
-            android:parentActivityName=".ui.MovieSearchActivity" >
+            android:parentActivityName=".ui.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.zoranbogdanovski.searchmoviesapp.ui.MovieSearchActivity" />
+                android:value=".ui.MainActivity" />
         </activity>
     </application>
 

@@ -32,7 +32,7 @@ import roboguice.activity.RoboActivity;
 import roboguice.inject.ContentView;
 
 @ContentView(R.layout.activity_movie_search)
-public class MovieSearchActivity extends RoboActivity {
+public class MainActivity extends RoboActivity {
 
     private static final String SEARCH_FRAGMENT_TAG = "search_fragment_tag";
 
@@ -45,7 +45,7 @@ public class MovieSearchActivity extends RoboActivity {
             MovieSearchResult model = (MovieSearchResult) parent.getAdapter().getItem(position);
             int movieId = model.getId();
             if (!NetworkUtils.isOnline()) {
-                DialogUtils.showMessageDialog(MovieSearchActivity.this,
+                DialogUtils.showMessageDialog(MainActivity.this,
                         getString(R.string.no_network_message),
                         new DialogInterface.OnClickListener() {
 
@@ -65,7 +65,7 @@ public class MovieSearchActivity extends RoboActivity {
                 new IParsedResponseListener() {
                     @Override
                     public void onParsedResponseFinished(IResponseModel response) {
-                        Intent intent = new Intent(MovieSearchActivity.this, MovieDetailActivity.class);
+                        Intent intent = new Intent(MainActivity.this, MovieDetailActivity.class);
                         Movie responseParsed = (Movie) response;
                         intent.putExtra(MovieDetailActivity.MODEL_EXTRA, responseParsed);
                         startActivity(intent);
@@ -198,7 +198,7 @@ public class MovieSearchActivity extends RoboActivity {
                         if (results.size() > 0) {
                             noResultsView.setVisibility(View.GONE);
                             ArrayAdapter<MovieSearchResult> adapter = new SearchResultsListAdapter(
-                                    MovieSearchActivity.this, results);
+                                    MainActivity.this, results);
 
                             listView.setAdapter(adapter);
                             listView.setOnItemClickListener(onMovieItemClickListener);

@@ -34,10 +34,10 @@ import roboguice.inject.ContentView;
 @ContentView(R.layout.activity_main)
 public class MainActivity extends RoboActivity {
 
-    private static final String SEARCH_FRAGMENT_TAG = "search_fragment_tag";
+    private static final String LISTVIEW_FRAGMENT_TAG = "listview_fragment_tag";
 
     private Handler searchHandler = new Handler();
-    private Fragment searchFragment = new SearchResultsFragment();
+    private Fragment searchFragment = new ListViewFragment();
     private Runnable searchRunnable = null;
     private AdapterView.OnItemClickListener onMovieItemClickListener = new AdapterView.OnItemClickListener() {
         @Override
@@ -227,7 +227,7 @@ public class MainActivity extends RoboActivity {
         FragmentManager fragmentManager = getFragmentManager();
 
         fragmentManager.beginTransaction()
-                .add(android.R.id.content, searchFragment, SEARCH_FRAGMENT_TAG)
+                .add(android.R.id.content, searchFragment, LISTVIEW_FRAGMENT_TAG)
                 .commit();
     }
 }

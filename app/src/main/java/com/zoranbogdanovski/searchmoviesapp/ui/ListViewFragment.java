@@ -11,14 +11,14 @@ import com.zoranbogdanovski.searchmoviesapp.R;
 /**
  * A fragment containing a list to show the user search results.
  */
-public class SearchResultsFragment extends Fragment {
+public class ListViewFragment extends Fragment {
 
-    public SearchResultsFragment() {
+    public ListViewFragment() {
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_search_results, container, false);
+        return inflater.inflate(R.layout.fragment_listview, container, false);
     }
 }

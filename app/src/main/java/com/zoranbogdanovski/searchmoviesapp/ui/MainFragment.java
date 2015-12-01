@@ -2,6 +2,7 @@ package com.zoranbogdanovski.searchmoviesapp.ui;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,6 +15,8 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.zoranbogdanovski.searchmoviesapp.R;
+import com.zoranbogdanovski.searchmoviesapp.util.DialogUtils;
+import com.zoranbogdanovski.searchmoviesapp.util.NetworkUtils;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -48,6 +51,22 @@ public class MainFragment extends Fragment {
     private Random random = new Random();
 
     public MainFragment() {
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (!NetworkUtils.isOnline()) {
+            DialogUtils.showMessageDialog(getActivity(),
+                getString(R.string.no_network_message),
+                new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        getActivity().finish();
+                    }
+                });
+        }
     }
 
     @Override
@@ -92,7 +111,8 @@ public class MainFragment extends Fragment {
 
         fragmentManager.beginTransaction()
             .replace(android.R.id.content, listViewFragment, LISTVIEW_FRAGMENT_TAG)
-            .addToBackStack("lidtview").commit();
+            .addToBackStack("listview")
+            .commit();
     }
 
     private void loadRandomImage(ImageView imageView) {

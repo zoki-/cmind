@@ -15,7 +15,6 @@
         android:layout_height="wrap_content"
         android:textAllCaps="true"
         android:maxLength="20"
-
         android:textColor="@android:color/black"
         android:textSize="18sp"/>
 

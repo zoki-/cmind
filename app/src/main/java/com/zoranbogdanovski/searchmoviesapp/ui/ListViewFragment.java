@@ -53,9 +53,17 @@ public class ListViewFragment extends Fragment {
     List<String> listItems = new ArrayList<>(GENERATED_ITEMS_COUNT);
 
     for (int i = 0; i < GENERATED_ITEMS_COUNT; i++) {
-        // TODO generate items
+        long generatedNumber = random.nextLong();
+        String generatedNumberString = String.valueOf(generatedNumber);
+        String countedNumbersString = countNumbersInString(generatedNumberString);
+        listItems.add(countedNumbersString);
     }
 
     return listItems;
+  }
+
+  private String countNumbersInString(String generatedNumber) {
+    // TODO implement
+    return null;
   }
 }

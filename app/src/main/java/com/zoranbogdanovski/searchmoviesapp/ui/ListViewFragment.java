@@ -8,10 +8,14 @@ import android.view.ViewGroup;
 
 import com.zoranbogdanovski.searchmoviesapp.R;
 
+import java.util.Random;
+
 /**
  * A fragment containing a list to show to the user.
  */
 public class ListViewFragment extends Fragment {
+
+    private Random random = new Random();
 
     public ListViewFragment() {
     }

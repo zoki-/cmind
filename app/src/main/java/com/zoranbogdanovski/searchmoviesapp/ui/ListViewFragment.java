@@ -63,7 +63,12 @@ public class ListViewFragment extends Fragment {
   }
 
   private String countNumbersInString(String generatedNumber) {
-    // TODO implement
-    return null;
+    StringBuilder stringBuilder = new StringBuilder();
+    char[] charactersArray = generatedNumber.toCharArray();
+    for (char c : charactersArray) {
+      // TODO implement
+    }
+
+    return stringBuilder.toString();
   }
 }

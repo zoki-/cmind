@@ -29,15 +29,6 @@
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait" >
         </activity>
-        <activity
-            android:name=".ui.MovieDetailActivity"
-            android:label="@string/title_activity_movie_detail"
-            android:screenOrientation="portrait"
-            android:parentActivityName=".ui.MainActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.MainActivity" />
-        </activity>
     </application>
 
 </manifest>

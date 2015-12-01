@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -47,7 +48,20 @@ public class MainFragment extends Fragment {
         View fragmentView = inflater.inflate(R.layout.fragment_main, container, false);
         webView = (WebView) fragmentView.findViewById(R.id.web_view);
         webView.loadUrl("https://www.google.com/");
-        // TODO add web view client to handle redirecting to list fragment
+        webView.setWebViewClient(new WebViewClient() {
+            @Override
+            public void onReceivedError(WebView view, int errorCode,
+                                        String description, String failingUrl) {
+                // Handle the error
+            }
+
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                // TODO check if url starts with http://yahoo.com and redirect to listview fragment
+                view.loadUrl(url);
+                return true;
+            }
+        });
 
         imageView = (ImageView) fragmentView.findViewById(R.id.image_view);
         imageView.setOnClickListener(new View.OnClickListener() {

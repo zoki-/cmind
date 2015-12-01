@@ -1,7 +1,9 @@
 package com.zoranbogdanovski.searchmoviesapp.ui;
 
 import android.app.Fragment;
+import android.app.FragmentManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,12 +15,19 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.zoranbogdanovski.searchmoviesapp.R;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Random;
 
 /**
  * A fragment containing a web view and an image view.
  */
 public class MainFragment extends Fragment {
+
+    private static final String LOG_TAG = MainFragment.class.toString();
+    private static final String LISTVIEW_FRAGMENT_TAG = "listview_fragment_tag";
+
+    private Fragment listViewFragment = new ListViewFragment();
 
     private static String[] imageUrls = {
         "https://image.tmdb.org/t/p/w130/t90Y3G8UGQp0f0DrP60wRu9gfrH.jpg",
@@ -49,16 +58,21 @@ public class MainFragment extends Fragment {
         webView = (WebView) fragmentView.findViewById(R.id.web_view);
         webView.loadUrl("https://www.google.com/");
         webView.setWebViewClient(new WebViewClient() {
-            @Override
-            public void onReceivedError(WebView view, int errorCode,
-                                        String description, String failingUrl) {
-                // Handle the error
-            }
 
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                // TODO check if url starts with http://yahoo.com and redirect to listview fragment
-                view.loadUrl(url);
+                try {
+                    URL urlObject = new URL(url);
+                    String host = urlObject.getHost();
+                    if (host.equals("www.yahoo.com")) {
+                        goToListViewFragment();
+                    } else {
+                        view.loadUrl(url);
+                    }
+                } catch (MalformedURLException e) {
+                    Log.e(LOG_TAG, "Malformed url clicked by user.");
+                    view.loadUrl(url);
+                }
                 return true;
             }
         });
@@ -71,6 +85,14 @@ public class MainFragment extends Fragment {
             }
         });
         return fragmentView;
+    }
+
+    private void goToListViewFragment() {
+        FragmentManager fragmentManager = getFragmentManager();
+
+        fragmentManager.beginTransaction()
+            .replace(android.R.id.content, listViewFragment, LISTVIEW_FRAGMENT_TAG)
+            .addToBackStack("lidtview").commit();
     }
 
     private void loadRandomImage(ImageView imageView) {

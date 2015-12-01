@@ -5,9 +5,13 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ListView;
 
 import com.zoranbogdanovski.searchmoviesapp.R;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -15,7 +19,9 @@ import java.util.Random;
  */
 public class ListViewFragment extends Fragment {
 
+    public static final int GENERATED_ITEMS_COUNT = 100;
     private Random random = new Random();
+    private ListView listView;
 
     public ListViewFragment() {
     }
@@ -24,6 +30,32 @@ public class ListViewFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-      return inflater.inflate(R.layout.fragment_listview, container, false);
+      View fragmentView = inflater.inflate(R.layout.fragment_listview, container, false);
+
+      listView = (ListView) fragmentView.findViewById(R.id.fragment_list);
+      List<String> listItems = generateListItems();
+      NumbersListAdapter adapter = new NumbersListAdapter(getActivity(), listItems);
+      listView.setAdapter(adapter);
+      listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+          if (position == 0) {
+            // go back when first item of list is clicked
+            getActivity().onBackPressed();
+          }
+        }
+      });
+
+      return fragmentView;
     }
+
+  private List<String> generateListItems() {
+    List<String> listItems = new ArrayList<>(GENERATED_ITEMS_COUNT);
+
+    for (int i = 0; i < GENERATED_ITEMS_COUNT; i++) {
+        // TODO generate items
+    }
+
+    return listItems;
+  }
 }

@@ -59,29 +59,62 @@ public class ListViewFragment extends Fragment {
     for (int i = 0; i < GENERATED_ITEMS_COUNT; i++) {
         long generatedNumber = random.nextLong();
         String generatedNumberString = String.valueOf(generatedNumber);
-        String countedNumbersString = countNumbersInString(generatedNumberString);
+        String countedNumbersString =  getCountedNumbersString(generatedNumberString);
         listItems.add(countedNumbersString);
     }
 
     return listItems;
   }
 
-  private String countNumbersInString(String generatedNumber) {
+  private String getCountedNumbersString(String generatedNumber) {
     StringBuilder stringBuilder = new StringBuilder();
     char[] charactersArray = generatedNumber.toCharArray();
     char tempChar = charactersArray[0];
     int length = charactersArray.length;
+    int numCount = 0;
     for (int i = 0; i < length; i++) {
-      char c = charactersArray[i];
-      // TODO implement
-      if (tempChar == c) {
+        char c = charactersArray[i];
+
         if (i == length - 1) {
           // last character
           // TODO count the last char and print
+
+          if (tempChar == c) {
+            numCount = numCount + 2;
+            String charString = numCount > 1 ? tempChar + "s" : tempChar + "";
+            stringBuilder.append(COUNT_WORDS[numCount - 1])
+                .append(" ")
+                .append(charString)
+                .append(".");
+          } else {
+            numCount++;
+            String charString = numCount > 1 ? tempChar + "s" : tempChar + "";
+            stringBuilder.append(COUNT_WORDS[numCount - 1])
+                .append(" ")
+                .append(charString)
+                .append(", ");
+            numCount = 1;
+            stringBuilder.append(COUNT_WORDS[numCount - 1])
+                .append(" ")
+                .append(c)
+                .append(".");
+          }
         } else {
-          // TODO if character is same as temp, count it, otherwise do the final count and print
+          // TODO if character is same as temp, count it, otherwise do the final count and print. Also reset counter
+          if (c == tempChar) {
+            numCount++;
+          } else {
+            int count = i == 1 ? numCount : numCount + 1;
+            numCount = numCount == 0 ? 1 : count;
+            String charString = numCount > 1 ? tempChar + "s" : tempChar + "";
+            stringBuilder.append(COUNT_WORDS[numCount - 1])
+                .append(" ")
+                .append(charString)
+                .append(", ");
+            numCount = 0;
+            tempChar = c;
+          }
         }
-      }
     }
 
     return stringBuilder.toString();

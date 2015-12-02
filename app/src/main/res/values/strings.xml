@@ -1,18 +1,7 @@
 <resources>
     <string name="app_name">App</string>
 
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
-    <string name="title_activity_search">SearchActivity</string>
-    <string name="no_data">No movie was found to display.</string>
     <string name="no_network_message">This app requires internet for using it. Please connect your
         device and try again.
     </string>
-    <string name="general_search">Search</string>
-    <string name="enter_search_query">Enter search text to find movie.</string>
-    <string name="vote_score">Vote score:</string>
-    <string name="published">Published:</string>
-    <string name="language">Language:</string>
-    <string name="title_activity_movie_detail">MovieDetailActivity</string>
-    <string name="no_details">Sorry, there are no details for this movie.</string>
 </resources>

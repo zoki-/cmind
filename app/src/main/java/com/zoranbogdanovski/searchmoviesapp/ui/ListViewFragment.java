@@ -77,40 +77,22 @@ public class ListViewFragment extends Fragment {
 
         if (i == length - 1) {
           // last character
-          // TODO count the last char and print
-
           if (tempChar == c) {
             numCount = numCount + 2;
-            String charString = numCount > 1 ? tempChar + "s" : tempChar + "";
-            stringBuilder.append(COUNT_WORDS[numCount - 1])
-                .append(" ")
-                .append(charString)
-                .append(".");
+            appendFinalCount(stringBuilder, tempChar, numCount);
           } else {
             numCount++;
-            String charString = numCount > 1 ? tempChar + "s" : tempChar + "";
-            stringBuilder.append(COUNT_WORDS[numCount - 1])
-                .append(" ")
-                .append(charString)
-                .append(", ");
+            appendNextCount(stringBuilder, tempChar, numCount);
             numCount = 1;
-            stringBuilder.append(COUNT_WORDS[numCount - 1])
-                .append(" ")
-                .append(c)
-                .append(".");
+            appendFinalCount(stringBuilder, c, numCount);
           }
         } else {
-          // TODO if character is same as temp, count it, otherwise do the final count and print. Also reset counter
           if (c == tempChar) {
             numCount++;
           } else {
             int count = i == 1 ? numCount : numCount + 1;
             numCount = numCount == 0 ? 1 : count;
-            String charString = numCount > 1 ? tempChar + "s" : tempChar + "";
-            stringBuilder.append(COUNT_WORDS[numCount - 1])
-                .append(" ")
-                .append(charString)
-                .append(", ");
+            appendNextCount(stringBuilder, tempChar, numCount);
             numCount = 0;
             tempChar = c;
           }
@@ -118,5 +100,21 @@ public class ListViewFragment extends Fragment {
     }
 
     return stringBuilder.toString();
+  }
+
+  private void appendNextCount(StringBuilder stringBuilder, char tempChar, int numCount) {
+    String charString = numCount > 1 ? tempChar + "s" : tempChar + "";
+    stringBuilder.append(COUNT_WORDS[numCount - 1])
+        .append(" ")
+        .append(charString)
+        .append(", ");
+  }
+
+  private void appendFinalCount(StringBuilder stringBuilder, char tempChar, int numCount) {
+    String charString = numCount > 1 ? tempChar + "s" : tempChar + "";
+    stringBuilder.append(COUNT_WORDS[numCount - 1])
+        .append(" ")
+        .append(charString)
+        .append(".");
   }
 }

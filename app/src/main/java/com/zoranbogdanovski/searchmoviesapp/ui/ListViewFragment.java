@@ -19,7 +19,11 @@ import java.util.Random;
  */
 public class ListViewFragment extends Fragment {
 
-    public static final int GENERATED_ITEMS_COUNT = 100;
+    private static final int GENERATED_ITEMS_COUNT = 100;
+    private static final String[] COUNT_WORDS = {"one", "two", "three", "four", "five", "six",
+        "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen",
+        "sixteen", "seventeen", "eighteen", "nineteen", "twenty"};
+
     private Random random = new Random();
     private ListView listView;
 
@@ -65,8 +69,19 @@ public class ListViewFragment extends Fragment {
   private String countNumbersInString(String generatedNumber) {
     StringBuilder stringBuilder = new StringBuilder();
     char[] charactersArray = generatedNumber.toCharArray();
-    for (char c : charactersArray) {
+    char tempChar = charactersArray[0];
+    int length = charactersArray.length;
+    for (int i = 0; i < length; i++) {
+      char c = charactersArray[i];
       // TODO implement
+      if (tempChar == c) {
+        if (i == length - 1) {
+          // last character
+          // TODO count the last char and print
+        } else {
+          // TODO if character is same as temp, count it, otherwise do the final count and print
+        }
+      }
     }
 
     return stringBuilder.toString();

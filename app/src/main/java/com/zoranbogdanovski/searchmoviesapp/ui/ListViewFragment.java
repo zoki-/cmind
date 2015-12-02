@@ -2,6 +2,7 @@ package com.zoranbogdanovski.searchmoviesapp.ui;
 
 import android.app.Fragment;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,7 @@ import java.util.Random;
  */
 public class ListViewFragment extends Fragment {
 
+    private static final String LOG_TAG = ListViewFragment.class.toString();
     private static final int GENERATED_ITEMS_COUNT = 100;
     private static final String[] COUNT_WORDS = {"one", "two", "three", "four", "five", "six",
         "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen",
@@ -57,9 +59,11 @@ public class ListViewFragment extends Fragment {
     List<String> listItems = new ArrayList<>(GENERATED_ITEMS_COUNT);
 
     for (int i = 0; i < GENERATED_ITEMS_COUNT; i++) {
-        long generatedNumber = random.nextLong();
+        int generatedNumber = random.nextInt();
+        generatedNumber = generatedNumber < 0 ? generatedNumber * -1 : generatedNumber;
         String generatedNumberString = String.valueOf(generatedNumber);
         String countedNumbersString =  getCountedNumbersString(generatedNumberString);
+        Log.d(LOG_TAG, "Generated number: " + generatedNumberString);
         listItems.add(countedNumbersString);
     }
 
